@@ -1,0 +1,16 @@
+.grid{
+    box-sizing: border-box; /*prevents border px from increasing the size of box*/
+    height:40px;
+    width:40px;
+    border: 1px solid black;
+    border-left: none;
+    border-top: none;
+}
+
+.container{
+    max-width: 640px;
+    display: flex;
+    flex-wrap: wrap;
+    border-left: 1px solid black;
+    border-top: 1px solid black;
+}
