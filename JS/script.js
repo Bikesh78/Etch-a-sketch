@@ -10,3 +10,16 @@ for (let i=0; i<16*16; i++){
     grid.classList.add('grid');
     container.appendChild(grid);
 }
+container.addEventListener('mouseover',function(e){
+    console.log(e.target.classList);
+    if(e.target.classList.value === 'grid'){
+        e.target.style.backgroundColor = "black";
+    }
+   
+});
+const clear = document.createElement('button');
+clear.classList.add('clear');
+clear.textContent= 'Clear';
+
+
+body.appendChild(clear);
