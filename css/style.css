@@ -1,19 +1,29 @@
+body{
+      
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 .square{
     box-sizing: border-box; /*prevents border px from increasing the size of box*/
-    height:40px;
-    width:40px;
+    height:30px;
+    width:30px;
     border: 1px solid black;
     border-left: none;
     border-top: none;
+    flex: 1 1 auto;
 }
 
 .container{
-    max-width: 640px;
+    max-width: 480px;
+    
     display: flex;
     flex-wrap: wrap;
     border-left: 1px solid black;
     border-top: 1px solid black;
-    margin: 45px;
+    margin: 30px;
+    
 }
 button{
     font-size: 24px;
