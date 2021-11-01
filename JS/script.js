@@ -2,7 +2,7 @@ const body = document.querySelector('body');
 const container = document.createElement('div');
 container.classList.add('container');
 body.appendChild(container);
-const grids= document.createElement('div');
+
 function generateGrid(gridSize){
     // creage new div element and append it to container each time
     for (let i=0; i<Math.pow(gridSize,2); i++){
@@ -23,6 +23,7 @@ container.addEventListener('mouseover',function(e){
    
 });
 
+
 const clear = document.createElement('button');
 clear.classList.add('clear');
 clear.textContent= 'Clear';
@@ -34,11 +35,13 @@ clear.addEventListener('click', function(){
     removeOldGrid(oldGridNum);
     generateGrid(newGridSize);
 });
-/*function removeOldGrid(oldGridNum){
+
+function removeOldGrid(oldGridNum){
     for(let i = 0; i<oldGridNum; i++){
-        container.removeChild(grids);
+        grids= document.querySelector('.square');
+        document.querySelector('.container').removeChild(grids);
     }
-}*/
+}
 function clearColor(){
     colorOfGrid = document.querySelectorAll('.square');
     //console.log(colorOfGrid);
