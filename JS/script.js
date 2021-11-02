@@ -5,14 +5,20 @@ body.appendChild(container);
 
 function generateGrid(gridSize){
     // creage new div element and append it to container each time
-    for (let i=0; i<Math.pow(gridSize,2); i++){
-        const grids= document.createElement('div');
-        grids.classList.add('square');
-        container.appendChild(grids);
+    for (let i=0; i<gridSize; i++){
+        const column =  document.createElement('div');
+        column.classList.add('column');
+        container.appendChild(column);
+        for (let j=0; j< gridSize; j++){
+            const grids= document.createElement('div');
+            grids.classList.add('square');
+            column.appendChild(grids);
+        }
+        
     }
-    return Math.pow(gridSize,2);
+    
 }
-generateGrid(16)
+generateGrid(16);
 
 container.addEventListener('mouseover',function(e){
    // console.log(e.target.classList);
@@ -27,19 +33,20 @@ container.addEventListener('mouseover',function(e){
 const clear = document.createElement('button');
 clear.classList.add('clear');
 clear.textContent= 'Clear';
+
 clear.addEventListener('click', function(){
-   
-    let oldGridNum = clearColor();
-   
-    let newGridSize = newGrid();
+    clearColor();
+    let oldGridNum = document.querySelectorAll('.column').length;
+    let newGridNum = newGrid();
     removeOldGrid(oldGridNum);
-    generateGrid(newGridSize);
+    generateGrid(newGridNum);
+    resizeSquare(newGridNum);
 });
 
 function removeOldGrid(oldGridNum){
     for(let i = 0; i<oldGridNum; i++){
-        grids= document.querySelector('.square');
-        document.querySelector('.container').removeChild(grids);
+        let oldColumn= document.querySelector('.column');
+        document.querySelector('.container').removeChild(oldColumn);
     }
 }
 function clearColor(){
@@ -48,7 +55,7 @@ function clearColor(){
     colorOfGrid.forEach(square =>{
         square.style.backgroundColor ="";
     });
-    return colorOfGrid.length;
+    
 }
 
 function newGrid(){
@@ -62,6 +69,19 @@ function newGrid(){
         }
     }
     return gridInput;
+}
+
+
+
+function resizeSquare(newSize){
+    const totalWidth = document.querySelector('.container').clientWidth;
+    const squareWidth = (totalWidth/newSize);
+    const squareHeight = squareWidth;
+    dd = document.querySelector('.square');
+    dd.style.clientWidth = squareWidth;
+    console.log(squareWidth);
+    console.log(dd.style.clientWidth);
+    document.querySelector('.square').clientHeight = squareHeight;
 }
 
 body.appendChild(clear);
