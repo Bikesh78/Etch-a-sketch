@@ -2,9 +2,60 @@ const body = document.querySelector('body');
 const container = document.createElement('div');
 container.classList.add('container');
 body.appendChild(container);
+const clear = document.createElement('button');
+clear.classList.add('clear');
+clear.textContent= 'Clear';
+const randomColor = document.createElement('button');
+randomColor.classList.add('random');
+randomColor.textContent = 'Random Color'
+const erase = document.createElement('button');
+erase.textContent = "Erase";
+const monotone = document.createElement('button');
+monotone.textContent = 'Monotone';
+
+const button = document.createElement('div');
+button.setAttribute('class','button');
+body.appendChild(button);
+button.append(monotone);
+button.appendChild(randomColor);
+button.appendChild(erase);
+button.appendChild(clear);
+
+generateGrid(16);
+colorSquareBlack();
+
+monotone.addEventListener('click',() =>{
+    colorSquareBlack();
+});
+clear.addEventListener('click', function(){
+    clearColor();
+    let oldGridNum = document.querySelectorAll('.column').length;
+    let newGridNum = getNewGridSize();
+    
+    generateGrid(newGridNum);
+    if (newGridNum !== undefined){
+        removeOldGrid(oldGridNum);
+    }    
+});
+
+randomColor.addEventListener('click',(e)=>{
+    container.addEventListener('mouseover',(e) =>{
+        if(e.target.classList.value === 'square'){
+            e.target.style.backgroundColor = `rgb(${generateRandomNumber()},${generateRandomNumber()},${generateRandomNumber()})`;
+        }
+    });
+});
+
+erase.addEventListener('click',(e)=>{
+    container.addEventListener('mouseover',(e) =>{
+        if (e.target.classList.value === 'square'){
+            e.target.style.backgroundColor = '';
+        }
+    });
+});
 
 function generateGrid(gridSize){
-    // creage new div element and append it to container each time
+    // create new div element and append it to container each time
     for (let i=0; i<gridSize; i++){
         const column =  document.createElement('div');
         column.classList.add('column');
@@ -18,34 +69,15 @@ function generateGrid(gridSize){
     }
     
 }
-generateGrid(16);
-
-container.addEventListener('mouseover',function(e){
-   // console.log(e.target.classList);
-    
-    if(e.target.classList.value === 'square'){
-        e.target.style.backgroundColor = "black";
-    }
-   
-});
-
-
-const clear = document.createElement('button');
-clear.classList.add('clear');
-clear.textContent= 'Clear';
-
-clear.addEventListener('click', function(){
-    clearColor();
-    let oldGridNum = document.querySelectorAll('.column').length;
-    let newGridNum = newGrid();
-    
-    generateGrid(newGridNum);
-    if (generateGrid(newGridNum) !== undefined){
-        removeOldGrid(oldGridNum);
-    }
-    
-
-});
+// colors square div with black when mouse hovers over it
+function colorSquareBlack(){
+    container.addEventListener('mouseover',function(e){
+        // console.log(e.target.classList);
+         if(e.target.classList.value === 'square'){
+             e.target.style.backgroundColor = "black";
+         } 
+     });
+}
 
 function removeOldGrid(oldGridNum){
     for(let i = 0; i<oldGridNum; i++){
@@ -53,6 +85,7 @@ function removeOldGrid(oldGridNum){
         document.querySelector('.container').removeChild(oldColumn);
     }
 }
+
 function clearColor(){
     colorOfGrid = document.querySelectorAll('.square');
     //console.log(colorOfGrid);
@@ -62,11 +95,10 @@ function clearColor(){
     
 }
 
-function newGrid(){
+function getNewGridSize(){
     let gridInputStr = prompt('Enter the number of square you want in the grid. Keep the number less than 100');
     if (gridInputStr === null){
-       return;
-        
+       return;  
     }
     let gridInput = Number(gridInputStr);
     //isNaN(number) is used for comparing NaN values and returns true or false
@@ -79,23 +111,7 @@ function newGrid(){
     return gridInput;
 }
 
-const randomColor = document.createElement('button');
-randomColor.classList.add('random');
-randomColor.textContent = 'Random Color'
-randomColor.addEventListener('click',(e)=>{
-    container.addEventListener('mouseover',(e) =>{
-        if(e.target.classList.value === 'square'){
-            e.target.style.backgroundColor = `rgb(${generateRandomNumber()},${generateRandomNumber()},${generateRandomNumber()})`;
-        }
-    });
-});
-
-
-
 function generateRandomNumber(){
     let randomNumber = Math.floor(Math.random() * 256);
     return randomNumber;
 }
-
-body.appendChild(clear);
-body.appendChild(randomColor);
