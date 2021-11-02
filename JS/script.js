@@ -38,9 +38,13 @@ clear.addEventListener('click', function(){
     clearColor();
     let oldGridNum = document.querySelectorAll('.column').length;
     let newGridNum = newGrid();
-    removeOldGrid(oldGridNum);
+    
     generateGrid(newGridNum);
-    resizeSquare(newGridNum);
+    if (generateGrid(newGridNum) !== undefined){
+        removeOldGrid(oldGridNum);
+    }
+    
+
 });
 
 function removeOldGrid(oldGridNum){
@@ -60,7 +64,11 @@ function clearColor(){
 
 function newGrid(){
     let gridInputStr = prompt('Enter the number of square you want in the grid. Keep the number less than 100');
-        let gridInput = Number(gridInputStr);
+    if (gridInputStr === null){
+       return;
+        
+    }
+    let gridInput = Number(gridInputStr);
     //isNaN(number) is used for comparing NaN values and returns true or false
     while(gridInputStr === '' || isNaN(gridInput) || gridInput >100){
         gridInputStr = prompt('Enter a valid number that is less than 100');
@@ -71,17 +79,23 @@ function newGrid(){
     return gridInput;
 }
 
+const randomColor = document.createElement('button');
+randomColor.classList.add('random');
+randomColor.textContent = 'Random Color'
+randomColor.addEventListener('click',(e)=>{
+    container.addEventListener('mouseover',(e) =>{
+        if(e.target.classList.value === 'square'){
+            e.target.style.backgroundColor = `rgb(${generateRandomNumber()},${generateRandomNumber()},${generateRandomNumber()})`;
+        }
+    });
+});
 
 
-function resizeSquare(newSize){
-    const totalWidth = document.querySelector('.container').clientWidth;
-    const squareWidth = (totalWidth/newSize);
-    const squareHeight = squareWidth;
-    dd = document.querySelector('.square');
-    dd.style.clientWidth = squareWidth;
-    console.log(squareWidth);
-    console.log(dd.style.clientWidth);
-    document.querySelector('.square').clientHeight = squareHeight;
+
+function generateRandomNumber(){
+    let randomNumber = Math.floor(Math.random() * 256);
+    return randomNumber;
 }
 
 body.appendChild(clear);
+body.appendChild(randomColor);
