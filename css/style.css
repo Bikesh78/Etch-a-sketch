@@ -1,45 +1,53 @@
 body{
     height: 100vh;
+    margin:0;
+    padding:20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: pink;
+    
 }
 .column{
     box-sizing: border-box;
     display:flex;
     flex-direction: column;
-    
-    flex: 1 1 auto;
-    /*border-right: 1px solid black;*/
-    
+    flex: 1 1 auto;    
 }
 .square{
     box-sizing: border-box; /*prevents border px from increasing the size of box*/
-    
-   
     border: 1px solid black;
     border-left: none;
     border-top: none;
     flex: 1 1 auto;
     
 }
-
 .container{
+    background-color:white;
     box-sizing: border-box;
     width: 480px;
-    height:480px;
-    
+    height:480px;  
     display: flex;
-    flex-direction: row;
-    
+    flex-direction: row;  
     border-left: 1px solid black;
     border-top: 1px solid black;
-    margin: 30px;
+    margin: 25px;
     
 }
 button{
     font-size: 24px;
+    font-family: cursive;
     text-align: center;
     padding: 8px 20px;
+    background-color: cyan;
+    color:white;
+    margin: 0 8px;
+    border-radius: 10px;
+}
+.header{
+    font-size: 48px;
+    margin:15px;
+    font-weight: bold;
+    font-family: cursive;
 }
