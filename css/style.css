@@ -1,25 +1,38 @@
 body{
-      
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
+.column{
+    box-sizing: border-box;
+    display:flex;
+    flex-direction: column;
+    
+    flex: 1 1 auto;
+    /*border-right: 1px solid black;*/
+    
+}
 .square{
     box-sizing: border-box; /*prevents border px from increasing the size of box*/
-    height:30px;
-    width:30px;
+    
+   
     border: 1px solid black;
     border-left: none;
     border-top: none;
+    flex: 1 1 auto;
     
 }
 
 .container{
-    max-width: 480px;
+    box-sizing: border-box;
+    width: 480px;
+    height:480px;
     
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: row;
+    
     border-left: 1px solid black;
     border-top: 1px solid black;
     margin: 30px;
