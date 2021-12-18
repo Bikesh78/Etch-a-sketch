@@ -14,3 +14,5 @@
     <li>Reinforced my knowledge of CSS Flexbox and other basic HTML and CSS concepts.</li>
     <li>Figure out my own solution for various problems by searching the web and going through various docuentations.</li>
 </ul>
+
+<p><b>Live Demo:</b> https://bikesh78.github.io/Etch-a-sketch/</p>
